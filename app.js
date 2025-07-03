@@ -15,7 +15,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 
-require('dotenv').config();
+require('dotenv').config(); // for the .env file
 
 const dbUrl = process.env.ATLASDB_URL;
 

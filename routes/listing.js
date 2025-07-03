@@ -11,6 +11,12 @@ router.get("/", wrapAsync(listingController.index));
 // new route
 router.get("/new", isLoggedIn, listingController.renderNewForm);
 
+router.get(
+  "/mybook",
+  isLoggedIn,
+  wrapAsync(listingController.myBookings)
+);
+
 // show route
 router.get("/:id", wrapAsync(listingController.showListing));
 
@@ -46,5 +52,21 @@ router.delete(
   isOwner,
   wrapAsync(listingController.destroyListing)
 );
+
+// booking route
+router.get("/:id/booking", wrapAsync(listingController.BookListing));
+
+router.post(
+  "/:id/booking",
+  isLoggedIn,
+  wrapAsync(listingController.createBooking)
+);
+
+router.get(
+  "/mybook",
+  isLoggedIn,
+  wrapAsync(listingController.myBookings)
+);
+
 
 module.exports = router;

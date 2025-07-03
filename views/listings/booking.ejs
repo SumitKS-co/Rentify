@@ -1,0 +1,58 @@
+<% layout("/layouts/boilerplate") %>
+
+<body>
+  <div class="row mt-3">
+    <div class="col-8 offset-2">
+      <h3>Book Your Place</h3>
+
+      <!-- Listing Details -->
+      <div class="card mb-4">
+        <img
+          src="<%= listing.image %>"
+          class="card-img-top img-fluid"
+          alt="<%= listing.title %>"
+          style="max-height: 400px; object-fit: cover"
+        />
+        <div class="card-body">
+          <h4 class="card-title"><%= listing.title %></h4>
+          <p class="card-text">
+            <strong>Description:</strong> <%= listing.description %><br />
+            <strong>Location:</strong> <%= listing.location %><br />
+            <strong>Country:</strong> <%= listing.country %><br />
+            <strong>Price:</strong> ₹<%= listing.price.toLocaleString("en-IN")
+            %><br />
+          </p>
+        </div>
+      </div>
+
+      <!-- Booking Form -->
+      <form method="POST" action="/listings/<%= listing._id %>/booking">
+        <div class="mb-3">
+          <label for="checkIn" class="form-label">Check-in</label>
+          <input type="date" class="form-control" name="checkIn" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="checkOut" class="form-label">Check-out</label>
+          <input type="date" class="form-control" name="checkOut" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="guests" class="form-label">Number of Guests</label>
+          <input
+            type="number"
+            class="form-control"
+            name="guests"
+            value="1"
+            min="1"
+            required
+          />
+        </div>
+
+        <button class="btn btn-dark mt-3 edit-btn">Confirm Booking</button>
+      </form>
+
+      <br /><br />
+    </div>
+  </div>
+</body>

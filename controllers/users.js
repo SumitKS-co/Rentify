@@ -9,13 +9,12 @@ module.exports.signUp = async (req, res) => {
     let { username, email, password } = req.body;
     const newUser = new User({ email, username });
     const registeredUser = await User.register(newUser, password);
-    console.log(registeredUser);
     // below is used to automatically login once signup
     req.login(registeredUser, (err) => {
       if (err) {
         return next(err);
       }
-      req.flash("success", "Welcome to WanderLust");
+      req.flash("success", "Welcome to Rentify");
       res.redirect("/listings");
     });
     //-----------------
@@ -30,7 +29,7 @@ module.exports.renderLoginForm = async (req, res) => {
 };
 
 module.exports.Login = async (req, res) => {
-  req.flash("success", "Welcome back to WanderLust! You are logged in!");
+  req.flash("success", "Welcome back to Rentify ! You are logged in!");
   let redirectUrl = res.locals.redirectUrl || "/listings";
   res.redirect(redirectUrl);
 };
